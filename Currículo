@@ -1,0 +1,141 @@
+from fpdf import FPDF
+
+
+
+# Criar a classe personalizada do PDF
+
+class PDF(FPDF):
+
+    def header(self):
+
+        # Título principal com espaço para foto ao lado
+
+        self.set_font("Arial", "B", 14)
+
+        self.cell(140, 10, "Ryan Ribeiro Da Cunha", ln=0)
+
+        self.rect(160, 10, 30, 40)  # Espaço para a foto 3x4
+
+        self.ln(7)
+
+        self.set_font("Arial", "", 11)
+
+        self.cell(140, 10, "Telefone: (86) 99554-3680", ln=1)
+
+        self.cell(140, 10, "E-mail: ryanribeiro230207@gmail.com", ln=1)
+
+        self.ln(5)
+
+
+
+    def section_title(self, title):
+
+        self.set_font("Arial", "B", 12)
+
+        self.set_text_color(0)
+
+        self.cell(0, 10, title, ln=1)
+
+
+
+    def section_body(self, body_lines):
+
+        self.set_font("Arial", "", 11)
+
+        for line in body_lines:
+
+            self.multi_cell(0, 8, line)
+
+        self.ln(3)
+
+
+
+# Criar o PDF
+
+pdf = PDF()
+
+pdf.add_page()
+
+
+
+# Conteúdo do currículo
+
+pdf.section_title("Objetivo")
+
+pdf.section_body(["Atuar como cobrador de ônibus, contribuindo com atenção, responsabilidade e bom atendimento aos passageiros."])
+
+
+
+pdf.section_title("Formação Acadêmica")
+
+pdf.section_body(["Ensino Médio Completo", "Curso Técnico em Farmácia"])
+
+
+
+pdf.section_title("Experiência Profissional")
+
+pdf.section_body([
+
+    "Estágio em Farmácia",
+
+    "- Atendimento ao público",
+
+    "- Organização de medicamentos e controle de estoque",
+
+    "- Apoio nas rotinas de balcão e suporte ao farmacêutico"
+
+])
+
+
+
+pdf.section_title("Cursos Complementares")
+
+pdf.section_body(["Informática Básica"])
+
+
+
+pdf.section_title("Habilidades")
+
+pdf.section_body([
+
+    "- Boa comunicação",
+
+    "- Experiência com atendimento ao público",
+
+    "- Agilidade e responsabilidade",
+
+    "- Facilidade para trabalhar em equipe"
+
+])
+
+
+
+pdf.section_title("Características Pessoais")
+
+pdf.section_body([
+
+    "- Pontualidade",
+
+    "- Responsabilidade",
+
+    "- Comprometimento"
+
+])
+
+
+
+pdf.section_title("Informações Adicionais")
+
+pdf.section_body(["- Disponibilidade de horário"])
+
+
+
+# Salvar PDF
+
+pdf_path = "/mnt/data/Curriculo_Ryan_Ribeiro_Da_Cunha_com_Foto.pdf"
+
+pdf.output(pdf_path)
+
+
+
+pdf_path
